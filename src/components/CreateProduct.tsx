@@ -17,7 +17,7 @@ const productData: IProduct = {
 }
 
 interface CreateProductProps {
-  onCreate: () => void
+  onCreate: (product: IProduct) => void
 }
 
 export function CreateProduct({ onCreate }: CreateProductProps) {
@@ -40,7 +40,7 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
       productData
     )
 
-    onCreate()
+    onCreate(responce.data)
   }
 
   const changeHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {

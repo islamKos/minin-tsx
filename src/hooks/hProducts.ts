@@ -1,11 +1,15 @@
 import { IProduct } from '../models'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios, { AxiosError } from 'axios'
 
 export function useProducts() {
   const [products, setProducts] = useState<IProduct[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  function addProduct(product: IProduct) {
+    setProducts((prev) => [...prev, product])
+  }
 
   async function fetchProducts() {
     try {
@@ -27,5 +31,5 @@ export function useProducts() {
     fetchProducts()
   }, [])
 
-  return { loading, error, products }
+  return { loading, error, products, addProduct }
 }
